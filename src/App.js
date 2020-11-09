@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import TodoFeature from './features/Todo';
 
 function App() {

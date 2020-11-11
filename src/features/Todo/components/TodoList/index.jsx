@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import TodoForm from '../TodoForm';
 import './styles.scss';
 
 TodoList.propTypes = {
@@ -22,22 +23,32 @@ function TodoList({ todoList, onTodoClick }) {
     onTodoClick(todo, idx);
   }
 
+  const handleTodoFormSubmit = (values) => { 
+    console.log('Form submit', values)
+  }
+
   return (
-    <ul className='todo-list'>
-      {todoList.map( (todo, idx) => (
-        <li
-          key={todo.id}
-          className={classnames({
-            'todo-item': true,
-            completed: todo.status === 'completed',
-            
-          })}
-          onClick={() => handleTodoClick(todo, idx)}
-        >
-          {todo.title}
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h3>What to do?</h3>
+
+      <TodoForm onSubmit={handleTodoFormSubmit} />
+
+      <ul className='todo-list'>
+        {todoList.map( (todo, idx) => (
+          <li
+            key={todo.id}
+            className={classnames({
+              'todo-item': true,
+              completed: todo.status === 'completed',
+              
+            })}
+            onClick={() => handleTodoClick(todo, idx)}
+          >
+            {todo.title}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

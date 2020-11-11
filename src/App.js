@@ -4,8 +4,23 @@ import AlbumFeature from './features/Album';
 import Notfound from './features/Album/components/Notfound';
 import TodoFeature from './features/Todo';
 import { Button } from '@material-ui/core';
+import { useEffect } from 'react';
+import categoryApi from './api/categoryApi'
 
 function App() {
+  const params = {
+    _limit: '5'
+  }
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const categoryList = await categoryApi.getAll(params);
+      console.log(categoryList);
+    }
+
+    fetchCategory();
+  }, []);
+
+
   return (
     <div className="App">
       HomePage

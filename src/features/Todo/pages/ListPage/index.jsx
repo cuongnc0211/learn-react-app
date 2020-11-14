@@ -1,7 +1,8 @@
-import React, { useMemo, useEffect, useState } from 'react';
+import queryString from 'query-string';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import TodoList from '../../components/TodoList';
-import queryString from 'query-string'
+import TodoForm from '../../components/TodoForm';
 
 
 function ListPage(props) {
@@ -76,6 +77,19 @@ function ListPage(props) {
     })
   }
 
+  const handleTodoFormSubmit = (values) => {
+    const newTodo = {
+      id: todoList[todoList.length - 1]?.id + 1,
+      title: values.title,
+      status: 'new'
+    }
+    console.log(newTodo)
+
+    const newTodoList = [...todoList, newTodo]
+
+    setTodoList(newTodoList)
+  }
+
   // do filter in normal way
   // const renderTodoList = todoList.filter(todo => filteredStatus === 'all' || filteredStatus === todo.status);
 
@@ -87,6 +101,10 @@ function ListPage(props) {
   return (
     <div>
       <h3>Todo List</h3>
+      <h4>What to do?</h4>
+
+      <TodoForm onSubmit={handleTodoFormSubmit} />
+
       <TodoList todoList={renderTodoList} onTodoClick={handleTodoClick} />
       <div>
         <button onClick={handleShowAllClick}>Show All</button>

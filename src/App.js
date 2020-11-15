@@ -6,6 +6,7 @@ import TodoFeature from './features/Todo';
 import { Button } from '@material-ui/core';
 import { useEffect } from 'react';
 import categoryApi from './api/categoryApi'
+import CounterFeature from './features/Counter';
 
 function App() {
   const params = {
@@ -31,11 +32,11 @@ function App() {
       <Switch>
         <Redirect from="/home" to="/" exact />
 
-        <Route path="/" component={TodoFeature} exact />
+        <Route path="/" component={CounterFeature} exact />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/albums" component={AlbumFeature} />
 
-        <Route component={Notfound} />
+        {/* <Route component={Notfound} /> */}
       </Switch>
     </div>
   );
